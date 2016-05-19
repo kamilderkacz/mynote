@@ -88,6 +88,7 @@ class NoteController extends Zend_Controller_Action {
         $sectionMap = new Application_Model_SectionMapper();
         $section = new Application_Model_Section();
         $oSection = $sectionMap->fetchOne($request->getParam('section_id'), $section);
+        $this->view->section_color = $oSection->getColor();
         $this->view->section_name = $oSection->getFullname();
     }
     // Edycja
@@ -132,6 +133,11 @@ class NoteController extends Zend_Controller_Action {
             $this->_flashMessenger->addMessage('danger');
             $this->_flashMessenger->addMessage('Wystąpił błąd podczas edycji notatki. ' . $e->getMessage());
         }
+        $sectionMap = new Application_Model_SectionMapper();
+        $section = new Application_Model_Section();
+        $oSection = $sectionMap->fetchOne($note->getSectionId(), $section);
+        $this->view->section_color = $oSection->getColor();
+        $this->view->section_name = $oSection->getFullname();
         $this->view->form = $oForm;
     }
     // Usuwanie jednej

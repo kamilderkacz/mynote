@@ -6,6 +6,7 @@
         <label class="col-xs-2 control-label"><?= $el->getLabel() ?></label>
         <div class="col-xs-6">
             <input class="form-control" type="text" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" required="required" placeholder="Podaj tytuł sekcji" />
+            <?= $this->getFormErrorMsg($el); ?>
         </div>
     </div>
     <div class="form-group">
@@ -13,9 +14,9 @@
         <label class="col-xs-2 control-label"><?= $el->getLabel() ?></label>
         <div class="col-xs-6">
             <select class="form-control" name="<?= $el->getName() ?>" id="<?= $el->getName() ?>">
-                            <?php foreach($el->getMultiOptions() as $key => $value): ?>
-                                <option value="<?= $key ?>" <?php if($el->getValue() == $key) echo 'selected' ;?>><?= $value ?></option>
-                            <?php endforeach; ?>
+            <?php foreach($el->getMultiOptions() as $key => $value): ?>
+                <option value="<?= $key ?>" <?php if($el->getValue() == $key) echo 'selected' ;?>><?= $value ?></option>
+            <?php endforeach; ?>
             </select>
         </div>
     </div>
@@ -58,7 +59,7 @@
                                     '<div class="color-swatches">' +
 
                                     '<div class="radio">' +
-                                        '<label for="kolor-default"><input type="radio" name="kolor" id="kolor-default" value="default" checked="checked"><div style="background-color:#fff;height:40px;width:40px;box-sizing:border-box;"></div> </label> ' +
+                                        '<label for="kolor-primary"><input type="radio" name="kolor" id="kolor-primary" value="primary" checked="checked"><div style="background-color:#337ab7;height:40px;width:40px;box-sizing:border-box;"></div> </label> ' +
                                     '</div>' + 
                                     '<div class="radio">' + 
                                         '<label for="kolor-success"><input type="radio" name="kolor" id="kolor-success" value="success"><div style="background-color:#5cb85c;height:40px;width:40px;box-sizing:border-box;"></div></label>' +

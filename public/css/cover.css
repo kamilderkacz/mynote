@@ -364,6 +364,9 @@ small {
 #table-notes {
 
 }
+.linkable {
+    cursor: pointer;
+}
 
 /*
  *  note_note_show

@@ -108,8 +108,8 @@ class SectionController extends Zend_Controller_Action
             $request = $this->getRequest();
             $oForm = new My_MyForm_Section_SectionForm();
             $oForm->setDecorators(array(array('ViewScript', array('viewScript' => 'section/form.phtml'))));
-            
-            $oForm->getElement('color')->setValue('default');
+            //Setting default color of section
+            $oForm->getElement('color')->setValue('primary');
             
             if ($this->getRequest()->isPost()) {
                 if ($oForm->isValid($request->getPost())) {

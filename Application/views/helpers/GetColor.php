@@ -9,11 +9,12 @@ class Zend_View_Helper_GetColor extends Zend_View_Helper_Abstract {
 //    const SHOW_NOTE_HEADING_TXT = 4;
         
         switch($hColor) {
-            case "default": {
-                if($type == 1) return "#fff";
-                if($type == 2) return "#fff";
-                if($type == 3) return "#333";
-                if($type == 4) return "#333";
+            case "primary": {
+                if($type == 1) return "#337ab7";
+                if($type == 2) return "#337ab7";
+                if($type == 3) return "#ddd";
+                if($type == 4) return "#ddd";
+                if($type == 5) return "#337ab7";
                 
             }
             case "success": {

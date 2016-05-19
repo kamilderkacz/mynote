@@ -7,7 +7,7 @@ class My_MyForm_Note_NoteForm extends Zend_Form //extends Common_Form_Abstract_M
     { 
         parent::__construct($options);
         
-        $this->setName('Dodawanie notatki0')
+        $this->setName('Dodawanie notatki')
             ->setMethod('post')
             ->setAction('/')
             ->setDecorators(array(array('ViewScript', array('viewScript' => 'note/form.phtml'))))
