@@ -1,0 +1,23 @@
+#AuthType Basic
+#AuthName "podaj login i hasło"
+#  AuthUserFile C:/p/mspwc/trunk/src/.htpasswd
+#AuthUserFile /home/ironman/domains/mspbiuro.ironman.bdl.pl/public_html/.htpasswd
+#Require valid-user
+#php_value session.auto_start 0
+#php_value session.save_path "/home/czytnia/www/public/tmp/session"
+#php_value session.save_path "d:\p\AK\czytnia\branches\cyztnia2\src\public\tmp\session"
+#php_admin_value open_basedir none
+#php_value session.save_path "/home/czytnia/domains/czytnia.linuxpl.info/public_html/czytnia1/public/tmp/session"
+php_value session.save_path "../application/tmp/session"
+#php_value session.save_path "d:\p\AK\czytnia\branches\czytnia2\src\public\tmp\session"
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{REQUEST_METHOD} =GET
+	RewriteCond %{QUERY_STRING} ^(.*)$
+	RewriteRule	^(.*)css/(.*)$		public/css/$2 [L]
+	RewriteRule	^(.*)fonts/(.*)$		public/fonts/$2 [L]
+	RewriteRule	^(.*)img/(.*)$		public/img/$2 [L]
+	RewriteRule	^(.*)js/(.*)$		public/js/$2 [L]	
+	RewriteRule	^.*$	public/index.php	[L]
+</IfModule>
+php_value session.auto_start 0

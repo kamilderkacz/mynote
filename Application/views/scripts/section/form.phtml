@@ -1,0 +1,95 @@
+ <!-- Formularz sekcji --> 
+<form class="form-horizontal" name="note_section" action="" method="<?php echo $this->element->getMethod() ?>">
+    <!-- Tytuł sekcji -->
+    <div class="form-group">
+        <?php $el = $this->element->fullname; ?>
+        <label class="col-xs-2 control-label"><?= $el->getLabel() ?></label>
+        <div class="col-xs-6">
+            <input class="form-control" type="text" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" required="required" placeholder="Podaj tytuł sekcji" />
+        </div>
+    </div>
+    <div class="form-group">
+        <?php $el = $this->element->visibility; ?>
+        <label class="col-xs-2 control-label"><?= $el->getLabel() ?></label>
+        <div class="col-xs-6">
+            <select class="form-control" name="<?= $el->getName() ?>" id="<?= $el->getName() ?>">
+                            <?php foreach($el->getMultiOptions() as $key => $value): ?>
+                                <option value="<?= $key ?>" <?php if($el->getValue() == $key) echo 'selected' ;?>><?= $value ?></option>
+                            <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <?php $el = $this->element->color; ?>
+        <label class="col-xs-2 control-label"><?= $el->getLabel() ?></label>
+        <div class="col-xs-4">
+            <input class="form-control" id="kolor" type="text" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" required="required" placeholder="Wybierz kolor dla sekcji" readonly>
+        </div>
+        <div class="col-xs-2">
+            <button id="choose-section-color" name="choose-section-color" class="btn btn-success" type="button">Wybierz</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2 control-label"></label>
+        <div class="col-xs-6">
+            <?php $el = $this->element->submit; ?>
+            <button class="btn btn-lg btn-success" type="submit" name="<?= $el->getName() ?>" ><?= $el->getLabel() ?></button>
+        </div>
+        
+    </div>
+    
+    
+</form>
+
+ <?php 
+    
+ ?>
+ 
+<script>
+    $(document).ready(function() {
+        $('#choose-section-color').click(function() {
+            bootbox.dialog({
+                title: "Wybierz kolor",
+                message: '<div class="row">  ' +
+                    '<div class="col-md-12"> ' +
+                        '<form class="form-horizontal"> ' + 
+                            '<div class="form-group"> ' +
+                                '<div class="col-xs-8">' +
+                                    '<div class="color-swatches">' +
+
+                                    '<div class="radio">' +
+                                        '<label for="kolor-default"><input type="radio" name="kolor" id="kolor-default" value="default" checked="checked"><div style="background-color:#fff;height:40px;width:40px;box-sizing:border-box;"></div> </label> ' +
+                                    '</div>' + 
+                                    '<div class="radio">' + 
+                                        '<label for="kolor-success"><input type="radio" name="kolor" id="kolor-success" value="success"><div style="background-color:#5cb85c;height:40px;width:40px;box-sizing:border-box;"></div></label>' +
+                                    '</div>' +
+                                    '<div class="radio">' + 
+                                        '<label for="kolor-warning"><input type="radio" name="kolor" id="kolor-warning" value="warning"> <div style="background-color:#f0ad4e;height:40px;width:40px;box-sizing:border-box;"></div>  </label>' +
+                                    '</div>' +
+                                    '<div class="radio">' + 
+                                        '<label for="kolor-danger"><input type="radio" name="kolor" id="kolor-danger" value="danger"> <div style="background-color:#d9534f;height:40px;width:40px;box-sizing:border-box;"></div> </label>' +
+                                    '</div>' +
+                                    '<div class="radio">' + 
+                                        '<label for="kolor-info"><input type="radio" name="kolor" id="kolor-info" value="info"> <div style="background-color:#5bc0de;height:40px;width:40px;box-sizing:border-box;"></div> </label>' +
+                                    '</div>' +
+                                    
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</form> '+ 
+                    '</div>  </div>',
+                buttons: {
+                    success: {
+                        label: "Wybierz",
+                        className: "btn-success",
+                        callback: function () {
+                            var color = $("input[name='kolor']:checked").val();
+                            $('#kolor').val(color);
+                        }
+                    }
+                }
+            }
+        );
+        });
+    });
+</script>

@@ -1,0 +1,113 @@
+<?php  
+ // var_dump($this->getVars())     
+
+?>
+
+<?php
+foreach($this->sections as $section) {
+    $zmienna[] = $section->fullname;
+}
+print "<script type=\"text/javascript\">";
+print "var zmienna=new Array()\n";
+foreach($zmienna as $tym) print "zmienna.push('$tym')\n";
+// w "zmienna" mam WSZYSTKIE Sekcje
+
+//print "alert(zmienna)";
+print "</script>";
+?>  
+<script type="text/javascript">
+  $(function() {
+//    var availableTags = [
+//      "ActionScript",
+//      "AppleScript",
+//      ....
+//    ];
+    $( "#search-box" ).autocomplete({
+      source: zmienna
+    });
+    
+    //jq-ui przesuwanie bloków sekcji (jq-ui)
+    $( "#sortable" ).sortable({
+        // Options from http://api.jqueryui.com/sortable/
+        delay: 100, // prevent dragging when we just want to click
+        revert: 0, // ms of animation
+    });
+    $( "#sortable" ).disableSelection();
+    
+    var cos = setInterval(function(){
+//        alert($( "#sortable" ).sortable( "toArray", {attribute: 'data-item_number'} ).toSource());
+    }, 5000);
+  });
+</script>
+
+<div id="view-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-success btn-lg" title="Dodaj sekcję..." onclick="<?= $this->redirecter(array(), 'note_section_add') ?>">
+                    <i class="fa fa-plus fa-lg"></i>
+                </button>
+                <?php if($this->sections): ?>
+                <button id="edit" class="btn btn-success btn-lg" type="button" title="Włącz tryb edytowania sekcji..."><i class="fa fa-wrench fa-lg"></i></button>
+                <?php endif; ?>
+            </div>
+
+        </div>
+    </div>
+    <div class="space"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4><?php  if($this->sections): ?>
+                Sekcje:
+                <?php else: ?>
+                Brak sekcji<br /><br /><small>By utworzyć nową, kliknij przycisk "+" powyżej.</small>
+                <?php endif; ?>
+            </h4>
+        </div>
+    </div>
+    <div class="space"></div>
+<!--    NAD SEKCJAMI    -->
+    <div class="row">
+        <div class="col-xs-12">
+            <?= $this->form ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+                <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
+        </div>
+    </div>
+<!--    SAME SEKCJE    -->
+    <!--<ul id="sortableee45">-->
+    <?php foreach ($this->paginator as $oRow): ?>
+        <?= $this->partial('section/section.phtml', array('row' => $oRow)) ?>
+    <?php endforeach; ?>
+    <!--</ul>-->
+<!--    POD SEKCJAMI  -->
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+                <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
+        </div>
+        
+
+        
+        
+    </div>
+</div>
+<script>
+$(document).ready(function () {
+
+    $('[name=edit-button]').hide();
+    $('[name=delete-button]').hide();
+    $('[type=search]').hide();
+
+});
+    
+$('#search-button').mouseenter(function () {
+    $('[type=search]').show();
+});
+$('#search-button').mouseleave(function () {
+    $('[type=search]').hide();
+});
+    
+</script>

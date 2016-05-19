@@ -1,0 +1,43 @@
+<?php //var_dump($this->getVars()); die();     ?>
+<div id="view-content">
+
+    <div class="btn-group" role="group">
+        
+        <button type="button" class="btn btn-success btn-lg" onclick="<?= $this->redirecter(array('section_id'=>$this->note->sectionId),'note_note_index') ?>"><span class="glyphicon glyphicon-share-alt fa-rotate-180" aria-hidden="true"></span></button>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-success dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-wrench">&nbsp;</i><span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="<?= $this->url(array('note_id'=>$this->note->id), 'note_note_edit'); ?>"><i class="fa fa-pencil-square"></i> Edytuj</a></li>
+              <li><a type="delete-level-1" href="<?= $this->url(array('note_id'=>$this->note->id), 'note_note_delete'); ?>"><i class="fa fa-trash"></i> Usuń</a></li>
+            </ul>
+        </div>
+        <button onclick="<?= $this->redirecter(array('section_id'=>$this->note->sectionId), 'note_note_add'); ?>" class="btn btn-success btn-lg" type="button" ><a href="<?= $this->url(array('section_id'=>$this->note->sectionId), 'note_note_add'); ?>"><i class="fa fa-plus fa-lg"></i></a></button>
+        
+    </div>
+    
+    
+    <div>
+        <h2>
+            Notatka
+        </h2>
+        <div class="space"></div>
+        
+        <div class="panel panel_<?=$this->section->color?> note">
+            <div class="panel-body_<?=$this->section->color?>">
+                <span class="panel-title">
+                    <h3><?= $this->escape($this->note->title)?></h3>
+                </span>
+                <hr />
+                <?= $this->makeLink($this->note->content) ?>
+            </div>  
+        </div>
+
+    </div>
+</div>
+
+<!--<script type="text/javascript">
+    
+  
+</script>-->

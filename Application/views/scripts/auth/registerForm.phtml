@@ -1,0 +1,66 @@
+<!-- Formularz rejestracji --> 
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <form class="form-horizontal" name="note_section" action="" method="<?php echo $this->element->getMethod() ?>">
+            
+            <div class="row">
+                <?php $el = $this->element->username; ?>
+                <div class="form-group <?= ($el->getMessages()!=false) ? 'has-error' : ''; ?>">
+                    <label><?= $el->getLabel() ?>*</label>
+                    <input name="<?= $el->getName() ?>" class="form-control" id="<?= $el->getName() ?>" value="<?= $el->getValue() ?>" type="text" required="required">
+                    <?= $this->getFormErrorMsg($el); ?>
+                </div>
+            </div>
+            <!-- username - pamiątka ;) -->
+
+            <div class="row">
+                <?php $el = $this->element->password; ?>
+                <div class="form-group <?= ($el->getMessages()!=false) ? 'has-error' : ''; ?> ">
+                    <label><?= $el->getLabel() ?>*</label>
+                    <input name="<?= $el->getName() ?>" class="form-control" id="<?= $el->getName() ?>" value="<?= $el->getValue() ?>" type="password" required="required">
+                    <?= $this->getFormErrorMsg($el); ?>
+                </div>
+                <?php $el = $this->element->password2; ?>
+                <div class="form-group <?= ($el->getMessages()!=false) ? 'has-error' : ''; ?> ">
+                    <label><?= $el->getLabel() ?>*</label>
+                    <input name="<?= $el->getName() ?>" class="form-control" id="<?= $el->getName() ?>" value="<?= $el->getValue() ?>" type="password" required="required" >
+                    <?= $this->getFormErrorMsg($el); ?>
+                </div>
+            </div>   
+            <div class="row">
+                <?php $el = $this->element->email; ?>
+                <div class="form-group <?= ($el->getMessages()!=false) ? 'has-error' : ''; ?> ">
+                    <label><?= $el->getLabel() ?>*</label>
+                    <input name="<?= $el->getName() ?>" class="form-control" id="<?= $el->getName() ?>" value="<?= $el->getValue() ?>" type="email" required="required">
+                    <?= $this->getFormErrorMsg($el); ?>
+                </div>
+                <?php $el = $this->element->email2; ?>
+                <div class="form-group <?= ($el->getMessages()!=false) ? 'has-error' : ''; ?> ">
+                    <label><?= $el->getLabel() ?>*</label>
+                    <input name="<?= $el->getName() ?>" class="form-control" id="<?= $el->getName() ?>" value="<?= $el->getValue() ?>" type="email" required="required">
+                    <?= $this->getFormErrorMsg($el); ?>
+                </div>
+            </div>    
+            <div class="row">
+                <?php $el = $this->element->terms; ?>
+                <div class="checkbox">
+                    <label><input class="checkbox" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" id="<?= $el->getName() ?>" type="checkbox" required="required">
+                    <?= $el->getLabel() ?>*</label>
+                </div>
+            </div>
+            <div class="space"></div>
+            <div class="row">
+                <div class="form-group">
+                    
+                        <?php $el = $this->element->submit; ?>
+                        <button class="btn btn-lg btn-success" type="submit" name="<?= $el->getName() ?>" ><?= $el->getLabel() ?></button>
+                    
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<script></script>

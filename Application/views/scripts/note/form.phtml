@@ -1,0 +1,36 @@
+ <!-- Formularz notatki --> 
+<form class="form-horizontal" name="note_note_add" action="" method="<?php echo $this->element->getMethod() ?>">
+    <!-- Tytuł notatki -->
+    <div class="form-group">
+        <?php $el = $this->element->title; ?>
+
+        <label class=" control-label horizontal"><?= $el->getLabel() ?></label>
+        <div class="row">
+            <div class="col-xs-8">
+                <input class="form-control" type="text" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" required="required" />
+            </div>
+            <div class="col-xs-4">
+                <button onclick="pasteToday()" class="btn-link" type="button">Wklej datę</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <?php $el = $this->element->content; ?>
+        <label class="control-label horizontal"><?= $el->getLabel() ?></label>
+        <div class="row">
+        <div class="col-xs-12">
+            <textarea id="tinymce" rows="10" name="<?= $el->getName() ?>"><?= $el->getValue() ?></textarea>
+        </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+        <div class="col-xs-7">
+            <?php $el = $this->element->submit; ?>
+            <button class="btn btn-lg btn-success" type="submit" name="<?= $el->getName() ?>" ><?= $el->getLabel() ?></button>
+        </div>
+        </div>
+    </div>
+    
+    
+</form>

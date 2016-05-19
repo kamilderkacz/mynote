@@ -1,0 +1,48 @@
+<!-- Formularz logowania --> 
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <form class="form-horizontal" name="note_section" action="" method="<?php echo $this->element->getMethod() ?>">
+            <!-- Login -->
+
+            <div class="form-group">
+                <?php $el = $this->element->username; ?>
+                <div class="row">
+
+                        <label class="control-label"><?= $el->getLabel() ?></label>
+
+                </div>
+                <div class="row">
+
+                        <input class="form-control" type="text" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" required="required" placeholder="Nazwa użytkownika" />
+
+                </div>  
+            </div>
+            <!-- Hasło -->
+            <div class="form-group">
+                <?php $el = $this->element->password; ?>
+                <div class="row">
+                    <div class="MyFormLabel">
+                        <label class="control-label"><?= $el->getLabel() ?></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="MyFormTextInput">
+                        <input class="form-control" type="password" value="<?= $el->getValue() ?>" name="<?= $el->getName() ?>" required="required" placeholder="Hasło" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="space"></div>
+            <div class="form-group">
+                <?php $el = $this->element->submit; ?>
+                <div class="row">
+                    <div class="MyFormButton1">
+                        <button class="btn btn-lg btn-success" type="submit" name="<?= $el->getName() ?>" ><?= $el->getLabel() ?></button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<?php unset($_SESSION['note_auth_login']['username']); ?>

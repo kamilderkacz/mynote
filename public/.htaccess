@@ -1,0 +1,15 @@
+SetEnv APPLICATION_ENV development
+
+RewriteEngine On
+
+#okreslenie pierwszej czesci path-info dla ponizszych regul RewriteRule
+RewriteBase /mynote/public/
+
+# "if exists"
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+# "is dowiązanie symboliczne" 
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+# "is directory"
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]

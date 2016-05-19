@@ -1,0 +1,47 @@
+<?php if ($this->totalItemCount != 0) : ?>
+    <div class="pull-left">
+        <div class="space"></div>
+        <?php 
+            $ipp = array(10, 25, 50);
+            $ippSelected = (isset($_SESSION['sectionController']['itemsPerPage']))? $_SESSION['sectionController']['itemsPerPage']: 10; // Sesion from "Bootstrap.php"
+        ?>
+<!--        <select class="form-control" id="ipp-select" onchange="setItemsPerPage()">
+            <?php //foreach ($ipp as $option): ?>
+                <option value="<?php //echo (int)$option ?>" <?php //echo ($ippSelected ==   $option)? 'selected' : ''?>> <?php //echo $option ?> </option>
+            <?php //endforeach; ?>
+        </select>-->
+    </div>
+
+    <!-- Paginacja START -->
+    <div class="pull-right">
+        <div class="toxic-pagination">
+            <nav>
+                <ul class="pagination pagination-sm">
+                    <?php
+                    if ($this->pageCount == 1) {
+                        return;
+                    }
+                    if (isset($this->previous)) {
+                        echo '<li><a href="' . $this->url(array('page' => $this->first)) . '"> « </a></li> '; // $this->previous
+                    } else {
+                        // nie wyświetlaj mi niczego!
+                    }
+                    foreach ($this->pagesInRange as $page) {
+                        if ($page != $this->current) {
+                            echo ' <li><a href="' . $this->url(array('page' => $page)) . '">' . $page . '</a></li> ';
+                        } else {
+                            echo '<li class="active" ><a >', $page, '</a></li> ';
+                        }
+                    }
+                    if (isset($this->next)) {
+                        echo '<li><a href="' . $this->url(array('page' => $this->last)) . '"> » </a></li>'; // $this->next
+                    } else {
+                        // nie wyświetlaj mi niczego!
+                    }
+                    ?>
+                </ul>
+            </nav>
+        </div>
+    </div> 
+    <!-- Paginacja KONIEC -->
+<?php endif;

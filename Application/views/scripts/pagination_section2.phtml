@@ -1,0 +1,35 @@
+<?php if ($this->totalItemCount!=0) : ?>
+<div class="pull-left">
+    <div class="space"></div>
+    Pokazuje <?= $this->firstItemNumber ?>-<?= $this->lastItemNumber ?> z <?= $this->totalItemCount ?> wszystkich 
+</div>
+<div class="pull-right">
+    <nav>
+      <ul class="pagination pagination-sm">
+<?php
+if ($this->pageCount == 1) {
+    return;
+}
+if (isset($this->previous)) {
+    echo '<li><a href="' . $this->url(array('page' => $this->first)) . '"> « </a></li> '; // $this->previous
+} else {
+    // nie wyświetlaj mi niczego
+}
+foreach ($this->pagesInRange as $page) {
+    if ($page != $this->current) {
+        echo ' <li><a href="' . $this->url(array('page' => $page)) . '">' . $page . '</a></li> ';
+    } else {
+        echo '<li class="active" ><a >', $page , '</a></li> ';
+    }
+}
+if (isset($this->next)) {
+    echo '<li><a href="' . $this->url(array('page' => $this->last)) . '"> » </a></li>'; // $this->next
+} else {
+    // nie wyświetlaj mi niczego
+}
+?>
+      </ul>
+    </nav>
+</div>
+
+<?php endif; ?>

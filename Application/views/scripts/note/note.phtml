@@ -1,0 +1,10 @@
+
+<tr class="index-note" >
+    <td onclick="<?= $this->redirecter(array('note_id' => $this->row->id), 'note_note_show'); ?>" style="cursor: pointer;" class="strong"><?= $this->row->title ?></td>
+    <td onclick="<?= $this->redirecter(array('note_id' => $this->row->id), 'note_note_show'); ?>" style="cursor: pointer;"><?= substr(strip_tags($this->row->content), 0, 45) ?>...</td>
+    <td class="i"><?= $this->escape($this->row->creationDatetime) ?></td>
+    <td class="icons">
+        <a title="Edycja" href="<?= $this->url(array('note_id' => $this->row->id), 'note_note_edit'); ?>" ><i class="fa fa-pencil-square-o" ></i></a>
+        <a title="Czy na pewno usunąć rekord?" href="<?= $this->url(array('note_id' => $this->row->id), 'note_note_delete'); ?>" type="delete-action"><i class="fa fa-trash" ></i></a>
+    </td>
+</tr>    

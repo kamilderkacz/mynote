@@ -1,0 +1,93 @@
+<!-- application/layouts/scripts/layout.phtml -->
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+    <head>
+        <?php $this->setPageTitle() ?>
+        <?php $this->setPageKeywords() ?>
+        <?php $this->setPageDescription() ?>
+        <?php
+        echo $this->headTitle();
+        echo $this->headMeta();
+        ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="robots" content="noindex">
+            <!--Page canonical użyjesz sobie w momencie wypuszczania apki-->
+            <!--<link rel="canonical" href="http://www.wp.pl/" />-->
+
+            <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+            <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+            <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl('css/bootstrap.css') ?>" />
+            <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl('css/default.css') ?>" />
+            <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl('css/expanding-searchbox.css') ?>" />
+            
+            <!--na końcu bo dopisuję-->
+            <link rel="stylesheet" type="text/css" href="<?= $this->baseUrl('css/cover.css') ?>" />
+            
+            
+
+
+            <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+            <script src="<?php echo $this->baseUrl('js/bootstrap.min.js'); ?>"></script>
+            <script src="<?php echo $this->baseUrl('js/bootbox.min.js'); ?>"></script>
+            
+            <script src="<?php echo $this->baseUrl('js/my.js'); ?>"></script>
+            <script src="<?php echo $this->baseUrl('js/expanding-searchbox.js'); ?>"></script>
+            <script src="http://tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+            <script>
+                tinymce.init({
+                    selector:'#tinymce',
+                    
+                    plugins: "textcolor", // ?
+                    menubar: false, // file, edit ....
+                    toolbar: "bold italic underline removeformat | styleselect | bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | fontselect fontsizeselect  | subscript superscript  | hr link preview spellchecker"
+
+//theme: "modern",
+//    width: 300,
+//    height: 300,
+//    plugins: [
+//         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+//         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+//         "save table contextmenu directionality emoticons template paste textcolor"
+//   ],
+//   content_css: "css/content.css",
+//   toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
+//   style_formats: [
+//        {title: 'Bold text', inline: 'b'},
+//        {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+//        {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+//        {title: 'Example 1', inline: 'span', classes: 'example1'},
+//        {title: 'Example 2', inline: 'span', classes: 'example2'},
+//        {title: 'Table styles'},
+//        {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+//    ]
+
+                });
+            </script>
+
+
+            <link rel="icon" href="img/favicon.ico"/>
+    </head>
+
+    <body>
+        <div class="site-wrapper">
+            
+            <div class="cover-container container-fluid">
+                <div class="site-wrapper-inner">
+                    
+                    <div id="header"><?= $this->render('navbar.phtml') ?></div>
+                    
+                    <?php  $this->getFlashMsg($this->msg) ?>
+                    
+                    <?php echo $this->layout()->content //  layout() jest View Helperem ?> 
+                    
+                    <div id="mastfoot"><?= $this->render('mastfoot.phtml') ?></div>
+                
+                </div>
+            </div>
+            
+        </div>
+    </body>
+    
+</html>

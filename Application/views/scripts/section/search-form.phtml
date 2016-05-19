@@ -1,0 +1,8 @@
+
+<form class="search-container" action="" method="<?php echo $this->element->getMethod() ?>">
+    <?php $el = $this->element->fullname ?>
+    <?= $this->getFormErrorMsg($el); ?>
+    <input id="search-box" type="text" class="search-box" name="<?= $el->getName() ?>" value="<?=$el->getValue() ?>" placeholder="<?=$el->getLabel() ?>"/>
+    <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+    <input type="submit" id="search-submit" />
+</form>
