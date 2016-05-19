@@ -30,13 +30,6 @@ class NoteController extends Zend_Controller_Action {
             $this->view->section = $oSection; // obiekt sekcji
 
             $this->view->notes = $aNotes; // tablica notatek sekcji w postaci obiektów 
-                    // Zastosowanie paginacji
-            $itemsPerPage = $itemsPerPage = (isset($_SESSION['SectionController']['itemsPerPage']))? $_SESSION['SectionController']['itemsPerPage'] : 10 ;
-            $paginator = Zend_Paginator::factory($aNotes);
-            $paginator->setItemCountPerPage($itemsPerPage)
-                      ->setCurrentPageNumber($this->_getParam('page', 1))
-                      ->setDefaultPageRange(8);
-            $this->view->paginator = $paginator;
         } catch(Exception $e) {
             $this->_flashMessenger->addMessage('danger');
             $this->_flashMessenger->addMessage('Wystąpił błąd podczas wyświetlania notatek. ' . $e->getMessage());
