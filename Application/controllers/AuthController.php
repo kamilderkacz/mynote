@@ -10,7 +10,6 @@ class AuthController extends Zend_Controller_Action {
         if( $auth->hasIdentity() ) {
             $this->view->storage = $auth->getIdentity();
         }
-//        $s1 = new Zend_Session_Namespace('note_auth_login');
     }
     
     public function registerAction () {

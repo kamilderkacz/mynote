@@ -34,7 +34,7 @@
             <script src="<?php echo $this->baseUrl('js/bootbox.min.js'); ?>"></script>
             
             <script src="<?php echo $this->baseUrl('js/my.js'); ?>"></script>
-            <script src="<?php echo $this->baseUrl('js/jquery.dataTables.js'); ?>"></script>
+            <script src="<?php echo $this->baseUrl('js/jquery.dataTables.min.js'); ?>"></script>
             <script src="<?php echo $this->baseUrl('js/expanding-searchbox.js'); ?>"></script>
             <script src="http://tinymce.cachefly.net/4.2/tinymce.min.js"></script>
             <script>
@@ -80,6 +80,7 @@
                     
                     <div id="header"><?= $this->render('navbar.phtml') ?></div>
                     
+                    <div class="space"></div>
                     <?php  $this->getFlashMsg($this->msg) ?>
                     
                     <?php echo $this->layout()->content //  layout() jest View Helperem ?> 

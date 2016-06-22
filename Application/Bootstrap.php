@@ -67,6 +67,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $s3 = new Zend_Session_Namespace('sectionController');
             $s3->itemsPerPage = 10;
     }
-
+    
+   
+    
 }
 

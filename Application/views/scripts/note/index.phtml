@@ -33,7 +33,7 @@
                 
                 <div class="table-responsive">
                     
-                    <table id="table-notes" class="hover" cellspacing="0" width="100%">
+                    <table id="table-notes" class="table" cellspacing="0" width="100%">
                         <thead>
                             <tr style="background-color: <?= $this->getColor($this->section->color, Application_Model_DbTable_Note::INDEX_TABLE_HEADER_BG) ?>; ">
                                 <th>Tytuł</th>
@@ -48,7 +48,9 @@
                                 <td class="linkable" href='<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>'><?= $oRow->title ?></td>
                                 <td class="linkable hidden-xs" href='<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>'><?= substr(strip_tags($oRow->content), 0, 45) ?>...</td>
                                 <td class="linkable hidden-sm hidden-xs" href='<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>'><?= $oRow->creationDatetime ?></td>
-                                <td>
+                                <td style="text-align: center;">
+                                    
+                                    <a title="Pokaż" href="<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>" ><button type="button" class="btn btn-primary"><i class="fa fa-eye" aria-hidden='true'></i></button></a>
                                     <a title="Edycja" href="<?= $this->url(array('note_id' => $oRow->id), 'note_note_edit'); ?>" ><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden='true'></i></button></a>
                                     <a title="Czy na pewno chcesz usunąć notatkę?" href="<?= $this->url(array('note_id' => $oRow->id), 'note_note_delete'); ?>" type="delete-action"><button type="button" class="btn btn-primary"><i class="fa fa-trash" aria-hidden='true'></i></button></a>
                                 </td>

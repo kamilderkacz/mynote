@@ -16,7 +16,7 @@ class My_MyForm_Section_SectionForm extends Zend_Form //extends Common_Form_Abst
         $fullname->setName('fullname')
                 ->addFilter('StripTags') //?
                 ->addFilter('StringTrim') //?
-                ->addValidators(array(new Zend_Validate_Alnum(), new My_Validator_multipleEntry('fullname')))
+                ->addValidators(array(new Zend_Validate_Alnum()))
               ->setLabel('Nazwa')
               ->setRequired(1);
         $color = new Zend_Form_Element_Text('color');

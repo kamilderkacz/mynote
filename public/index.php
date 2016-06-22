@@ -33,9 +33,5 @@ $application = new Zend_Application(
 //$front->addControllerDirectory(APPLICATION_PATH . '/Modules/Note/Controllers', 'note');
 
 
-
-
-
-
 $application->bootstrap()
             ->run();

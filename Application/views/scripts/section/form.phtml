@@ -18,6 +18,7 @@
                 <option value="<?= $key ?>" <?php if($el->getValue() == $key) echo 'selected' ;?>><?= $value ?></option>
             <?php endforeach; ?>
             </select>
+            <?= $this->getFormErrorMsg($el); ?>
         </div>
     </div>
     <div class="form-group">
@@ -29,6 +30,7 @@
         <div class="col-xs-2">
             <button id="choose-section-color" name="choose-section-color" class="btn btn-success" type="button">Wybierz</button>
         </div>
+        <?= $this->getFormErrorMsg($el); ?>
     </div>
     <div class="form-group">
         <label class="col-xs-2 control-label"></label>

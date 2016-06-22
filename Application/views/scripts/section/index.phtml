@@ -1,19 +1,16 @@
 <?php  
  // var_dump($this->getVars())     
+if($this->sections) {
+    foreach($this->sections as $section) {
+        $zmienna[] = $section->fullname;
+    }
+    print "<script type=\"text/javascript\">";
+    print "var zmienna=new Array()\n";
+    foreach($zmienna as $tym) print "zmienna.push('$tym')\n";
+    // w "zmienna" mam WSZYSTKIE Sekcje
 
-?>
-
-<?php
-foreach($this->sections as $section) {
-    $zmienna[] = $section->fullname;
-}
-print "<script type=\"text/javascript\">";
-print "var zmienna=new Array()\n";
-foreach($zmienna as $tym) print "zmienna.push('$tym')\n";
-// w "zmienna" mam WSZYSTKIE Sekcje
-
-//print "alert(zmienna)";
-print "</script>";
+    //print "alert(zmienna)";
+    print "</script>";
 ?>  
 <script type="text/javascript">
   $(function() {
@@ -25,21 +22,10 @@ print "</script>";
     $( "#search-box" ).autocomplete({
       source: zmienna
     });
-    
-    //jq-ui przesuwanie bloków sekcji (jq-ui)
-    $( "#sortable" ).sortable({
-        // Options from http://api.jqueryui.com/sortable/
-        delay: 100, // prevent dragging when we just want to click
-        revert: 0, // ms of animation
-    });
-    $( "#sortable" ).disableSelection();
-    
-    var cos = setInterval(function(){
-//        alert($( "#sortable" ).sortable( "toArray", {attribute: 'data-item_number'} ).toSource());
-    }, 5000);
+
   });
 </script>
-
+<?php } ?>
 <div id="view-content">
     <div class="row">
         <div class="col-xs-12">
@@ -60,30 +46,34 @@ print "</script>";
             <h4><?php  if($this->sections): ?>
                 <h2>Sekcje</h2>
                 <?php else: ?>
-                Brak sekcji<br /><br /><small>By utworzyć nową, kliknij przycisk "+" powyżej.</small>
+                Brak sekcji<br /><br /><small>Nie masz jeszcze sekcji. Aby utworzyć, kliknij "+" powyżej.</small>
                 <?php endif; ?>
             </h4>
         </div>
     </div>
     <div class="space"></div>
-<!--    NAD SEKCJAMI    -->
+
+    <?php if($this->sections): ?>
     <div class="row">
         <div class="col-xs-12">
             <?= $this->form ?>
         </div>
     </div>
+    <?php endif; ?>
+<div class="space"></div>
     <div class="row">
         <div class="col-sm-6 col-xs-12">
                 <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
         </div>
     </div>
+
 <!--    SAME SEKCJE    -->
     <!--<ul id="sortableee45">-->
     <?php foreach ($this->paginator as $oRow): ?>
         <?= $this->partial('section/section.phtml', array('row' => $oRow)) ?>
     <?php endforeach; ?>
     <!--</ul>-->
-<!--    POD SEKCJAMI  -->
+
     <div class="row">
         <div class="col-sm-6 col-xs-12">
                 <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
@@ -96,18 +86,16 @@ print "</script>";
 </div>
 <script>
 $(document).ready(function () {
-
     $('[name=edit-button]').hide();
     $('[name=delete-button]').hide();
     $('[type=search]').hide();
-
 });
-    
+
 $('#search-button').mouseenter(function () {
     $('[type=search]').show();
 });
 $('#search-button').mouseleave(function () {
     $('[type=search]').hide();
 });
-    
+
 </script>
