@@ -258,15 +258,21 @@ h1 > small, h2 > small {
 
 .panel {
   margin-bottom: 20px;
+  /*zaokr rogów*/
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   color: #222;
 }
+/*zakrywamy białe obramowania*/
 .panel_success {
     border-color: #4cae4c;
 }
-.panel-body_success,.panel-body_info, .panel-body_default,.panel-body_warning,.panel-body_danger {
+.panel_warning {
+    border-color: #EC971F;
+}
+/*zakrywamy białe obramowania - KONIEC */
+.panel-body_success,.panel-body_info, .panel-body_primary,.panel-body_warning,.panel-body_danger {
     padding: 10px 35px 40px 35px;
     /*text-shadow: none;*/
     border: 0;
@@ -275,6 +281,7 @@ h1 > small, h2 > small {
     color: white;
     background-color: #5CB85C;
     border: 1px solid #5CB85C;
+    
 }
 .panel-body_danger {
     color: white;
@@ -286,7 +293,7 @@ h1 > small, h2 > small {
     background-color: #EC971F;
     border: 1px solid #EC971F;
 }
-.panel-body_info {
+.panel-body_info, .panel-body_primary {
     color: white;
     background-color: #375083;
     border: 1px solid #375083;
