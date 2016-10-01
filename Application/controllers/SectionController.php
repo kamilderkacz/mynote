@@ -4,15 +4,12 @@ class SectionController extends Zend_Controller_Action
 {
     public function init() {
         
-        // Pobranie wiadomości flash
         $this->_flashMessenger = $this->_helper->getHelper('FlashMessenger');
         $this->view->msg = $this->_flashMessenger->getMessages(); 
         
-        // Operacje na sesjach
         $auth = Zend_Auth::getInstance();
         if( $auth->hasIdentity() ) {
             $this->view->storage = $auth->getIdentity(); // są to paramsy funkcji getResultRowObject() w AuthController
-                       
         }
         
     }

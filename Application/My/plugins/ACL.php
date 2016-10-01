@@ -12,7 +12,6 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
         parent::preDispatch($request);
         
         try {
-            
         
             $acl = new Zend_Acl;
 
@@ -20,8 +19,7 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
                 $acl
                 ->addRole(new Zend_Acl_Role('guest'))
                 ->addRole(new Zend_Acl_Role('member'))
-                ->addRole(new Zend_Acl_Role('admin'))
-                ;
+                ->addRole(new Zend_Acl_Role('admin'));
 
                 // DODAWANIE ZASOBÓW
                 $acl    //KONTROLER
@@ -43,11 +41,10 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
                         //auth
                 ->addResource('note_auth_register')
                 ->addResource('note_auth_login')
-                ->addResource('note_auth_logout')
-                ;
+                ->addResource('note_auth_logout');
 
                 // DODAWANIE REGUŁ DLA POSZCZEGÓLNYCH RÓL 
-                // panuje zasada, że wszystko domyślnie jest zabronione, a więc daję zezwolenia :
+                // panuje zasada, że wszystko domyślnie jest zabronione, a więc daję zezwolenia:
                 // 
                     // GUESTS
                     $acl
@@ -57,7 +54,7 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
     //                ->allow('guest', 'note_error_error') // not found
                     ;
                     // ADMINS
-                    $acl->allow('admin'); // Dostaje dostęp do całej witryny
+                    $acl->allow('admin'); // Wszystko
                     // MEMBERS
                     $acl
                     ->allow('member', 'note_index_index') 
@@ -77,21 +74,25 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
 
                     ; 
 
-            // SPRAWDZENIE PRAWA DOSTĘPU DO ZASOBU !        
+            // SPRAWDZENIE PRAWA DOSTĘPU DO ZASOBU:
+                    
             $role = $this->getRole();
             $params = $request->getParams();
             $route = 'note_' . $params['controller'] . '_' . $params['action'];
 
             if(!$acl->isAllowed($role, $route)) {
                 $request->setControllerName('error')
-                    ->setActionName('error')   ;
+                        ->setActionName('error');
             }
             //Jeśli dostęp jest zezwolony, nie zmieniamy niczego.
-        } catch (Exception $ex) {
-
+        } catch (Zend_Exception $e) {
+            echo $e->getMessage();
         }
     }
 
+    /*
+     * 
+     */
     public function getRole() {
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) { // jeśli zalogowany

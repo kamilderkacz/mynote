@@ -38,11 +38,12 @@ class AuthController extends Zend_Controller_Action {
                 }
 
             }
-        } catch (Exception $e) {
+            $this->view->registerForm = $registerForm;
+        } catch (Zend_Exception $e) {
             $this->_flashMessenger->addMessage('danger');
-            $this->_flashMessenger->addMessage('Wystąpił błąd podczas rejestracji użytkownika: ' . $e->getMessage());
+            $this->_flashMessenger->addMessage('Wystąpił błąd podczas rejestracji użytkownika: ');
         }
-        $this->view->registerForm = $registerForm;
+        
         
     }
     

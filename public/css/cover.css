@@ -171,7 +171,9 @@ body {
     text-align: center;
 }
 
-
+.alert {
+    text-shadow: none;
+}
 
 
 /*PANEL USERA*/

@@ -14,7 +14,7 @@ class NoteController extends Zend_Controller_Action {
         
     }
     
-    // Pokazywanie wszystkich
+    // Pokazanie wszystkich notatek
     public function indexAction() {
         try {
             $pageTitleSession = new Zend_Session_Namespace('pageTitle'); 

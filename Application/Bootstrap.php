@@ -45,19 +45,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         try {
             $route = Zend_Controller_Front::getInstance()->getRouter();
             include APPLICATION_PATH . '/configs/route.php';
-        } catch (Exception $ex) {
-            echo $ex->getMessage();
+        } catch (Zend_Exception $e) {
+            echo $e->getMessage();
         }
         
     }
-    protected function _initPlugins() {
-        //Rejestracja Pluginów następuje w application.ini. Chyba że wolisz tak:
-        
-        /*$front = Zend_Controller_Front::getInstance();
-        $ACLPlugin = new My_Plugin_ACL();
-        $front->setControllerDirectory(APPLICATION_PATH . '/controllers')
-              ->registerPlugin($ACLPlugin);*/
-    }    
+  
 
     protected function _initSessionVars() {
 //        $s0 = new Zend_Session_Namespace('general');

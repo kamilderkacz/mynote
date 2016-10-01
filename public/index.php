@@ -23,14 +23,6 @@ $application = new Zend_Application(
     APPLICATION_PATH . '/configs/application.ini'
 );
 
-//$front = Zend_Controller_Front::getInstance();
-// INSTANCJA STWORZONA
-//        $front->setControllerDirectory(array(
-//            'default' => APPLICATION_PATH . '/Modules/Default/Controllers',
-//            'note' => APPLICATION_PATH . '/Modules/Note/Controllers',
-//        ));
-//$front->addModuleDirectory('../application/Modules');
-//$front->addControllerDirectory(APPLICATION_PATH . '/Modules/Note/Controllers', 'note');
 
 
 $application->bootstrap()
