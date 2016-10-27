@@ -13,10 +13,12 @@ class My_MyForm_Section_SectionForm extends Zend_Form //extends Common_Form_Abst
 
         
         $fullname = new Zend_Form_Element_Text('fullname');
+        $fullnameAlnumV = new Zend_Validate_Alnum();
+        $fullnameAlnumV->setAllowWhiteSpace(true);
         $fullname->setName('fullname')
-                ->addFilter('StripTags') //?
-                ->addFilter('StringTrim') //?
-                ->addValidators(array(new Zend_Validate_Alnum()))
+                ->addFilter('StripTags')
+                ->addFilter('StringTrim')
+                ->addValidators(array($fullnameAlnumV))
               ->setLabel('Nazwa')
               ->setRequired(1);
         $color = new Zend_Form_Element_Text('color');

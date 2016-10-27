@@ -14,10 +14,12 @@ class My_MyForm_Auth_RegisterForm extends Zend_Form
             ->setEnctype(parent::ENCTYPE_MULTIPART);
         
         $username = new Zend_Form_Element_Text('username');
+        $usernameAlnumV = new Zend_Validate_Alnum();
+        $multipleEntryV = new My_Validator_multipleEntry('username');
         $username->setName('username')
                 ->addFilter('StringTrim') // usuwa białe spacje
               ->setLabel('Nazwa użytkownika')
-              ->addValidators(array(new Zend_Validate_Alnum(), new My_Validator_multipleEntry('username')))
+              ->addValidators(array($usernameAlnumV, $multipleEntryV))
               ->setRequired(1);
 
         $password = new Zend_Form_Element_Password('password');
