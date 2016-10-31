@@ -1,7 +1,9 @@
-
-<h1>Error 404</h1>
-<h1> </h1>
-<h2><?php echo $this->message ?></h2>
+<h1>
+    Błąd <?= $this->errorCode ?>
+</h1>
+<h3>
+    <?= $this->message ?>
+</h3>
 
 <?php if (isset($this->exception)): ?>
     <h3>Exception information:</h3>
@@ -17,4 +19,5 @@
     <pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
     </pre>
     <?php
- endif ?>
+
+ endif;

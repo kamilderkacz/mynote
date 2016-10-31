@@ -31,7 +31,7 @@
         <div class="col-xs-12">
             <?php if ( !empty($this->notes) ) { ?>
                 
-                <div class="table-responsive">
+                <!--<div class="table-responsive"> SŁUŻY DO HORYZONTALNEGO PRZEWIJANIA KOLUMN TABELI -->
                     
                     <table id="table-notes" class="table" cellspacing="0" width="100%">
                         <thead>
@@ -49,7 +49,6 @@
                                 <td class="linkable hidden-xs" href='<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>'><?= substr(strip_tags($oRow->content), 0, 45) ?>...</td>
                                 <td class="linkable hidden-sm hidden-xs" href='<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>'><?= $oRow->creationDatetime ?></td>
                                 <td style="text-align: center;">
-                                    
                                     <a title="Pokaż" href="<?= $this->url(array('note_id' => $oRow->id), 'note_note_show'); ?>" ><button type="button" class="btn btn-primary"><i class="fa fa-eye" aria-hidden='true'></i></button></a>
                                     <a title="Edycja" href="<?= $this->url(array('note_id' => $oRow->id), 'note_note_edit'); ?>" ><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden='true'></i></button></a>
                                     <a title="Czy na pewno chcesz usunąć notatkę?" href="<?= $this->url(array('note_id' => $oRow->id), 'note_note_delete'); ?>" type="delete-action"><button type="button" class="btn btn-primary"><i class="fa fa-trash" aria-hidden='true'></i></button></a>
@@ -58,25 +57,24 @@
                         <?php endforeach; ?>
                         </tbody>
                     </table> 
-                </div>
+                    
+                <!--</div>-->
             
-            <?php } // if 
+            <?php } // /if 
             else {
             ?>
                 Brak wpisów w tej sekcji.
-            <?php } // else  ?>
+            <?php } // /else  ?>
         </div>
     </div>
 
-
 </div>
+
 <script type='text/javascript'>
 $(document).ready(function() {
     $('#table-notes').DataTable( {
-        // sorting by 3-rd column
-        "order": [[ 3, "desc" ]]
+        "order": [[ 3, "desc" ]] // sort by 3-rd column
     } );
-    
     // It allows every row of data to redirect to details
     $('#table-notes').on( 'click', 'tbody tr td.linkable', function () {
         window.location.href = $(this).attr('href');

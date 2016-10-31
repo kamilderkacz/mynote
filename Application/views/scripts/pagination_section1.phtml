@@ -1,6 +1,5 @@
 <?php if ($this->totalItemCount != 0) : ?>
     <div class="pull-left">
-        <div class="space"></div>
         <?php 
             $ipp = array(10, 25, 50);
             $ippSelected = (isset($_SESSION['sectionController']['itemsPerPage']))? $_SESSION['sectionController']['itemsPerPage']: 10; // Sesion from "Bootstrap.php"

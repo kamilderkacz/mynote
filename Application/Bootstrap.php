@@ -1,28 +1,22 @@
 <?php
-//Zend_Session::start();
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    // funkcje poprzedzone "_init" wywołują się same
+    // All the functions which have "_init" at the beginning are called automatically
    
-    protected function _initResourceAutoloader()
-    {
-        $db = $this->getPluginResource('db');
-        
-        
-         $autoloader = new Zend_Loader_Autoloader_Resource(array(
-            'basePath'  => APPLICATION_PATH,
-            'namespace' => 'Application',
-         ));
-
-         $autoloader->addResourceType( 'model', 'Models', 'Model');
-         return $autoloader;
+    // Autoloaders
+    protected function _initResourceAutoloader() {
+        $autoloader = new Zend_Loader_Autoloader_Resource(array(
+           'basePath'  => APPLICATION_PATH,
+           'namespace' => 'Application',
+        ));
+        $autoloader->addResourceType('model', 'Models', 'Model');
+        return $autoloader;
     }
-    
     protected function _initAutoload() {
         $resourceLoader = new Zend_Loader_Autoloader_Resource(array(
             'basePath'      => APPLICATION_PATH,
-            'namespace'     => 'My', /////////////
+            'namespace'     => 'My',
             'resourceTypes' => array(
                 'plugin' => array(
                     'path'      => 'My/plugins/',
@@ -38,9 +32,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 ),
             ),
         ));
+        return $resourceLoader;
     }
 
-    
+    // Routing initialization
     protected function _initRouter() {
         try {
             $route = Zend_Controller_Front::getInstance()->getRouter();
@@ -48,20 +43,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         } catch (Zend_Exception $e) {
             echo $e->getMessage();
         }
-        
     }
-  
-
+    
+    // Session variables initialization
     protected function _initSessionVars() {
 //        $s0 = new Zend_Session_Namespace('general');
-//        $s0->baseUrl = '';
         $s1 = new Zend_Session_Namespace('note_auth_login');
-        $s2 = new Zend_Session_Namespace('navbar'); // po to by ustalić która zakładka jest aktywna
+        $s2 = new Zend_Session_Namespace('navbar'); // for active menu tab purpose
         $s3 = new Zend_Session_Namespace('sectionController');
-            $s3->itemsPerPage = 10;
+        $s3->itemsPerPage = 10;
     }
-    
-   
-    
+
 }
 

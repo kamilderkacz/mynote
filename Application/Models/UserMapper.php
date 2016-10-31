@@ -39,9 +39,9 @@ class Application_Model_UserMapper {
         );
         if (null === ($id = $user->getId())) {
             unset($data['user_id']);
-            $this->getDbTable()->insert($data); // array
+            $this->getDbTable()->insert($data); 
         } else {
-            $this->getDbTable()->update($data, array('user_id = ?' => $id)); // array
+            $this->getDbTable()->update($data, array('user_id = ?' => $id));
         }
     }
     
@@ -50,6 +50,7 @@ class Application_Model_UserMapper {
     }
 
 
+    
     public function fetchOne($id, Application_Model_User $user) { // Zwraca obiekt z bazy danych
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {

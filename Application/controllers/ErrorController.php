@@ -5,20 +5,14 @@ class ErrorController extends Zend_Controller_Action
 
     public function errorAction()
     {
-        $pageTitleSession = new Zend_Session_Namespace('pageTitle'); 
+        $sesPageHeader = new Zend_Session_Namespace('pageHeader'); 
         
         $errors = $this->_getParam('error_handler');
         
+        
         if (!$errors || !$errors instanceof ArrayObject) {
-            
-            //sam żem to napisoł:
-            $auth = Zend_Auth::getInstance();
-            if(!$auth->hasIdentity()) {
-                $this->view->message = 'Nie odnaleziono strony lub masz do niej zabroniony dostęp.<br /><br /><a href="'.$this->_helper->url('login','auth').'">Logowanie</a>';
-            }
-            else {
-                $this->view->message = 'Nie odnaleziono strony lub masz do niej zabroniony dostęp.';
-            }
+            // Access denied
+            $this->view->message = 'Nie masz dostępu do tego zasobu.<br /><br /><a href="'.$this->_helper->url('login','auth').'">Zaloguj się</a>';
             return;
         }
         
@@ -28,17 +22,18 @@ class ErrorController extends Zend_Controller_Action
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
                 
                 $this->getResponse()->setHttpResponseCode(404);
-                $pageTitleSession->pageTitle = 'Przykro mi... ta strona nie istnieje';
+                $sesPageHeader->pageTitle = 'Nie znaleziono strony';
                 
                 $priority = Zend_Log::NOTICE;
                 $this->view->message = 'Nie znaleziono strony.';
+                $this->view->errorCode = 404;
                 break;
             default:
                 // application error
                 $this->getResponse()->setHttpResponseCode(500);
-                $pageTitleSession->pageTitle = 'Przykro mi... wystąpił błąd';
+                $sesPageHeader->pageTitle = 'Wystąpił problem.';
                 $priority = Zend_Log::CRIT;
-                $this->view->message = 'Wystąpił błąd systemu. Jeśli problem powtarza się, skontaktuj się proszę z administratorem serwisu.'; // jakiś błąd w widoku/brak pliku z widokiem na 100%.
+                $this->view->message = 'Wystąpił błąd systemu. Jeśli problem powtarza się, skontaktuj się z administratorem serwisu.'; // jakiś błąd w widoku/brak pliku z widokiem na 100%.
                 break;
         }
         

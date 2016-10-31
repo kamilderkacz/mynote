@@ -30,6 +30,7 @@
   background-clip: padding-box;
   *border-right-width: 2px;
   *border-bottom-width: 2px;
+  
 }
 .ui-autocomplete .ui-menu-item > a.ui-corner-all {
   display: block;
@@ -39,6 +40,7 @@
   line-height: 18px;
   color: #555555;
   white-space: nowrap;
+  text-shadow: none;
 }
 .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-hover, .ui-autocomplete .ui-menu-item > a.ui-corner-all.ui-state-active {
   color: #ffffff;
@@ -48,4 +50,5 @@
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   background-image: none;
+  text-shadow: none;
 }

@@ -2,7 +2,7 @@
 
 class Application_Model_User
 {
-    //Parametry obiektu modelu
+    // Model's object params
     protected $id;
     protected $username;
     protected $password;
@@ -30,6 +30,12 @@ class Application_Model_User
         }
         return $this;
     }
+    /*
+     * __get() and __set() will provide a convenience mechanism for us to access
+     * the individual entry properties, and proxy to the other getters and
+     * setters. They also will help ensure that only properties we whitelist
+     * will be available in the object. 
+    */
     public function __set($name, $value) {
         $method = 'set' . $name;
         
@@ -38,7 +44,6 @@ class Application_Model_User
         }
         $this->$method($value);
     }
-    // __get() and __set() will provide a convenience mechanism for us to access the individual entry properties, and proxy to the other getters and setters. They also will help ensure that only properties we whitelist will be available in the object. 
     public function __get($name) {
         $method = 'get' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {

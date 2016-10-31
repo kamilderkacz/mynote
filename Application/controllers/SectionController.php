@@ -43,8 +43,6 @@ class SectionController extends Zend_Controller_Action
         $pageTitleSession = new Zend_Session_Namespace('pageTitle'); 
         $pageTitleSession->pageTitle = 'Moje sekcje';
         $_SESSION['navbar']['przegladaj'] = 1;
-        
-        
         //Sekcje
         $section_map = new Application_Model_SectionMapper();
         $authorID = $_SESSION['Zend_Auth']['storage'][0]->user_id;
@@ -52,7 +50,7 @@ class SectionController extends Zend_Controller_Action
         $this->view->sections = $aSections; // przekazujemy rowset 
         
         // Paginacja
-        $itemsPerPage = (isset($_SESSION['sectionController']['itemsPerPage']))? $_SESSION['sectionController']['itemsPerPage'] : 10 ;
+        $itemsPerPage = (isset($_SESSION['sectionController']['itemsPerPage']))? $_SESSION['sectionController']['itemsPerPage'] : 5 ;
         $paginator = Zend_Paginator::factory($aSections);
         $paginator->setItemCountPerPage($itemsPerPage)
                   ->setCurrentPageNumber($this->_getParam('page', 1))
@@ -87,7 +85,6 @@ class SectionController extends Zend_Controller_Action
                     }
                 }
             }
-            
         } catch (Exception $ex) {
             $this->_flashMessenger->addMessage('danger');
             $this->_flashMessenger->addMessage('Błąd wyszukiwania. ' . $ex->getMessage());

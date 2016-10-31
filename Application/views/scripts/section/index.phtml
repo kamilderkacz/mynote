@@ -1,5 +1,5 @@
 <?php  
- // var_dump($this->getVars())     
+// autouzupełnianie
 if($this->sections) {
     foreach($this->sections as $section) {
         $zmienna[] = $section->fullname;
@@ -20,13 +20,21 @@ if($this->sections) {
 //      ....
 //    ];
     $( "#search-box" ).autocomplete({
-      source: zmienna
+      delay: 500,
+      source: zmienna, // dane
+      classes: {
+        "ui-autocomplete": "klasa"
+      },
     });
 
   });
 </script>
 <?php } ?>
-<div id="view-content">
+
+    <div id="row">
+    <div class="col-xs-12">
+    
+    <!-- Przyciski akcji -->
     <div class="row">
         <div class="col-xs-12">
             <div class="btn-group" role="group">
@@ -40,7 +48,10 @@ if($this->sections) {
 
         </div>
     </div>
+    <!-- /przyciski akcji -->
+    
     <div class="space"></div>
+    
     <div class="row">
         <div class="col-xs-12">
             <h4><?php  if($this->sections): ?>
@@ -51,8 +62,10 @@ if($this->sections) {
             </h4>
         </div>
     </div>
+    
     <div class="space"></div>
 
+    <!-- Wyszukiwarka sekcji -->
     <?php if($this->sections): ?>
     <div class="row">
         <div class="col-xs-12">
@@ -60,30 +73,36 @@ if($this->sections) {
         </div>
     </div>
     <?php endif; ?>
-<div class="space"></div>
+    <!-- /wyszukiwarka sekcji -->
+    
+    <div class="space"></div>
+    
+    <!-- Paginacja góra -->
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-                <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
+            <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
         </div>
     </div>
+    <!-- /paginacja góra -->
 
-<!--    SAME SEKCJE    -->
-    <!--<ul id="sortableee45">-->
+    <!-- Lista sekcji -->
+<!--<ul id="sortableee45">-->
     <?php foreach ($this->paginator as $oRow): ?>
         <?= $this->partial('section/section.phtml', array('row' => $oRow)) ?>
     <?php endforeach; ?>
-    <!--</ul>-->
+<!--</ul>-->
+    <!-- /lista sekcji -->
 
+    <!-- Paginacja dół -->
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-                <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
+            <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
         </div>
-        
-
-        
-        
     </div>
-</div>
+    <!-- /paginacja dół -->
+    </div>
+    </div>
+
 <script>
 $(document).ready(function () {
     $('[name=edit-button]').hide();
@@ -96,6 +115,10 @@ $('#search-button').mouseenter(function () {
 });
 $('#search-button').mouseleave(function () {
     $('[type=search]').hide();
+});
+
+$('.ui-menu-item').click(function(){
+    
 });
 
 </script>
