@@ -5,7 +5,7 @@ Aplikacja do zarządzania notatkami
 
 1. Utwórz bazę danych "mynote" (lub dowolną inną nazwą) z kodowaniem UTF-8<br />
 2. Zaimportuj plik mynote.sql z głównego katalogu projektu<br />
-3. Skopiuj plik application/configs/application.ini.dist, usuń rozszerzenie ".dist" i zmień w nim następujące parametry:
+3. Skopiuj plik application/configs/application.ini.dist, usuń rozszerzenie ".dist" i zmień w nim następujące parametry:<br/>
 - resources.db.params.dbname (dostosuj do nazwy bazy)
 - resources.db.params.host
 - resources.db.params.username
