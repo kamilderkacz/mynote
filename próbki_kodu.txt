@@ -1,0 +1,3 @@
+mastfoot.phtml - by pokazać jak dbasz o bezpieczeństwo
+AuthController.php - by pokazać bezpieczne logowanie za pomocą solenia hasła
+User.php - by pokazać swój model obiektu

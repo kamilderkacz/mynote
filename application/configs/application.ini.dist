@@ -1,0 +1,48 @@
+[production]
+phpSettings.display_startup_errors = 0
+phpSettings.display_errors = 0
+resources.frontController.params.displayExceptions = 0
+resources.frontController.throwExceptions = 0
+
+includePaths.library = APPLICATION_PATH "/../library"
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+appnamespace = "Application"
+
+
+resources.frontController.plugins.acl = "My_Plugin_ACL" ;rejestracja plugina
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+;resources.frontController.params.useDefaultControllerAlways = 1 ; czy chcemy miec tylko 1 moduł Default
+ressources.modules[] = ""
+
+
+resources.layout.layoutPath = APPLICATION_PATH "/layouts/" ; gdzie ma szukać layoutu
+resources.view.doctype = "HTML5" ;XHTML1_STRICT
+resources.view[] = ;wyciagamy obiekt z bootstrap'a
+;konf. bazy danych
+resources.db.adapter = "PDO_MYSQL"
+resources.db.isDefaultTableAdapter = 1
+resources.db.params.dbname = "mynote"
+resources.db.params.host = ""
+resources.db.params.username = ""
+resources.db.params.password = ""
+resources.db.params.charset = "utf8"
+resources.db.params.driver_options.1002 = "SET NAMES utf8"
+
+resources.session.save_path = APPLICATION_PATH "/tmp/session"
+resources.session.use_only_cookies = true
+resources.session.remember_me_seconds = 864000
+
+my.domain = ""
+my.absolute_url = ""
+
+[testing : production]
+phpSettings.display_startup_errors = 0
+phpSettings.display_errors = 0
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1 ; errors
+resources.frontController.params.displayExceptions = 1
+resources.frontController.throwExceptions = 1
+
