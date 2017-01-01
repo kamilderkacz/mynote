@@ -24,16 +24,30 @@
         </h2>
         <div class="space"></div>
         
-        <div class="panel panel_<?=$this->section->color?> note">
-            <div class="panel-body_<?=$this->section->color?>">
-                <span class="panel-title">
-                    <h3><?= $this->escape($this->note->title)?></h3>
-                </span>
-                <hr />
-                <?= $this->makeLink($this->note->content) ?>
-            </div>  
+        <!-- Przyciski następna/poprzednia -->
+        <div class="note-newer-older-btns">
+            <button type="button" class="note-newer-btn btn btn-<?=$this->section->color?> btn-sm pull-left" title="Poprzednia notatka" onclick="window.location = '/notatka/pokaz/<?= $this->newerId ?>'; return false;">
+                &LT;
+            </button>
+            <button type="button" class="note-older-btn btn btn-<?=$this->section->color?> btn-sm pull-right" title="Następna notatka" onclick="window.location = '/notatka/pokaz/'; return false;">
+                &GT;
+            </button>
+            
         </div>
+        
+            <div class="panel panel_<?=$this->section->color?> note">
+                <div class="panel-body_<?=$this->section->color?>">
+                    <span class="panel-title">
+                        <h3><?= $this->escape($this->note->title)?></h3>
+                    </span>
+                    <hr />
+                    <?= $this->makeLink($this->note->content) ?>
+                </div>  
+            </div>
+        
 
+        <!-- Przyciski następna/poprzednia -->
+        
     </div>
 </div>
 

@@ -53,6 +53,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $s3 = new Zend_Session_Namespace('sectionController');
         $s3->itemsPerPage = 10;
     }
+    
+    // Pass config to registry
+    protected function _initConfig()
+    {
+        $config = new Zend_Config($this->getOptions(), true);
+        Zend_Registry::set('config', $config);
+        return $config;
+    }
 
 }
 
