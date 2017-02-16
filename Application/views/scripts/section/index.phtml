@@ -86,11 +86,11 @@ if($this->sections) {
     <!-- /paginacja góra -->
 
     <!-- Lista sekcji -->
-<!--<ul id="sortableee45">-->
+    <ul id="sortable">
     <?php foreach ($this->paginator as $oRow): ?>
         <?= $this->partial('section/section.phtml', array('row' => $oRow)) ?>
     <?php endforeach; ?>
-<!--</ul>-->
+    </ul>
     <!-- /lista sekcji -->
 
     <!-- Paginacja dół -->
