@@ -21,27 +21,25 @@ $(document).ready(function () {
             message: warning, /*""Czy na pewno chcesz usunąć konto? Wszystkie znajdujące się na niej dane (w tym notatki!) zostaną usunięte z systemu.""*/
             title: "<span=\"bootbox-danger\"><i class=\"fa fa-exclamation-triangle\" style=\"color:#C9302C;\"></i> Uwaga!</span>",
             buttons:
-                    {
-                        "success":
-                                {
-                                    "label": "Tak",
-                                    "className": "btn-sm btn-danger",
-                                    "callback": function () { // funkcja jaka ma zostać wykonana po sukcesie
-                                        window.location.replace(location);
-                                    }
-                                },
-                        "danger":
-                                {
-                                    "label": "Nie",
-                                    "className": "btn-sm btn-success",
-                                    "callback": function () { // funkcja jaka ma zostać wykonana po anulowaniu
-                                    }
-                                }
+            {
+                "success":
+                {
+                    "label": "Tak",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () { // funkcja jaka ma zostać wykonana po sukcesie
+                        window.location.replace(location);
                     }
+                },
+                "danger":
+                {
+                    "label": "Nie",
+                    "className": "btn-sm btn-success",
+                    "callback": function () { // funkcja jaka ma zostać wykonana po anulowaniu
+                    }
+                }
+            }
         });
     });
-    
-
     
     // Skrypt: Zmiany widoczności sekcji
     $('[name=icon-changing-visibility]').click(function (event) {
@@ -103,12 +101,12 @@ $(document).ready(function () {
         });
     });
     
-    
+    // Umożliwienie liście #sortable bycia sortowalnym i skrypt zmiany kolejn.
     $('#sortable').sortable({
     axis: 'y',
     update: function (event, ui) {
         var data = $(this).sortable('serialize');
-
+        alert(data);
         // POST to server using $.post or $.ajax
 //        $.ajax({
 //            data: data,

@@ -29,6 +29,7 @@ class Application_Model_SectionMapper {
             'section_color' => $section->getColor(),
             'section_visibility' => $section->getVisibility(),
             'section_removed' => $section->getRemoved(),
+            'section_order' => $section->getOrder(),
         );
         if (null === ($id = $section->getId())) {
             unset($data['section_id']);
@@ -53,12 +54,13 @@ class Application_Model_SectionMapper {
                 ->setColor($row->section_color)
                 ->setVisibility($row->section_visibility)
                 ->setRemoved($row->section_removed)
+                ->setOrder($row->section_order)
                 ;
         return $section;
     }
 
-    public function fetchAll($where) { // Zwraca tablicę obiektów z bazy danych
-        $resultSet = $this->getDbTable()->fetchAll($where);
+    public function fetchAll($where, $order = null) { // Zwraca tablicę obiektów z bazy danych
+        $resultSet = $this->getDbTable()->fetchAll($where, $order);
         $sections = array();
         foreach ($resultSet as $row) {
             $section = new Application_Model_Section();
@@ -68,6 +70,7 @@ class Application_Model_SectionMapper {
                     ->setColor($row->section_color)
                     ->setVisibility($row->section_visibility)
                     ->setRemoved($row->section_removed)
+                    ->setOrder($row->section_order)
                     ;
             $sections[] = $section;
         }

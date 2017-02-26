@@ -9,6 +9,7 @@ class Application_Model_Section
     protected $color;
     protected $visibility;
     protected $removed;
+    protected $order;
 
     public function __construct(array $options =  null) {
         if (is_array($options)) {
@@ -86,7 +87,14 @@ class Application_Model_Section
     public function getRemoved() {
         return $this->removed;
     }
-    
+    public function setOrder($value) {
+        $this->order = (int) $value;
+        return $this;
+    }
+    public function getOrder() {
+        return $this->order;
+    }
+
     
 }
 

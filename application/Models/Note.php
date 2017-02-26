@@ -102,6 +102,40 @@ class Application_Model_Note
         return $this->removed;
     }
 
+    public function findNewer($note_id, $section_id) {
+
+        $tNote = new Application_Model_DbTable_Note();
+        
+        $result = $tNote->fetchAll(
+                array(
+                    // 1st where statement
+                    $tNote->select()
+                    ->from($tNote, array(new Zend_Db_Expr('max(note_id) as maxId'))),
+                    // 2nd where statement
+                    'note_section_id = :note_section_id' // warunek konieczny!
+                    ), 
+                    // binding the values from 2nd where statement
+                    array(':note_section_id' => $section_id)
+                    
+                )
+                ->current(); // return row, not rowset
+        
+        $maxId = $result->maxId;
+
+        // jeżeli $i jest równe lub większe od $maxId, pętla nie wykona się ani razu
+        // jeżeli $i jest mniejsze niż $maxId
+        for ($i = $note_id; $i != $maxId ;$i++) {
+            //sprawdzam czy w ogóle taki id jest
+            if ($tNote->find($i+1)) {
+                return $i+1;
+            } 
+        }
+        // THIS is the newest note
+        return $note_id;
+        
+    }
+    
+    
 }
 
 

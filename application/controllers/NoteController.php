@@ -47,6 +47,9 @@ class NoteController extends Zend_Controller_Action {
         $note_map = new Application_Model_NoteMapper();
         $note = new Application_Model_Note();
         $oNote = $note_map->fetchOne($note_id, $note);
+        // pobranie idkow nowszej/starszej notatki
+        $newerId = $note->findNewer($note_id, $oNote->getSectionId());
+        $this->view->newerId = $newerId;
         //separacja
         $section = new Application_Model_Section();
         $section_map = new Application_Model_SectionMapper();

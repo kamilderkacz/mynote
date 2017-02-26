@@ -39,14 +39,14 @@ class SectionController extends Zend_Controller_Action
     }
   
     public function indexAction()
-    { // Framework ASP - Rapo -  zatwarnicka
+    {
         $pageTitleSession = new Zend_Session_Namespace('pageTitle'); 
         $pageTitleSession->pageTitle = 'Moje sekcje';
         $_SESSION['navbar']['przegladaj'] = 1;
         //Sekcje
         $section_map = new Application_Model_SectionMapper();
         $authorID = $_SESSION['Zend_Auth']['storage'][0]->user_id;
-        $aSections = $section_map->fetchAll('section_removed=0 AND section_author_id='.$authorID);
+        $aSections = $section_map->fetchAll('section_removed=0 AND section_author_id='.$authorID, 'section_order ASC');
         $this->view->sections = $aSections; // przekazujemy rowset 
         
         // Paginacja
@@ -59,6 +59,7 @@ class SectionController extends Zend_Controller_Action
         
         $this->view->totalItemCount = $paginator->getTotalItemCount();
         $this->view->itemCountPerPage = $paginator->getItemCountPerPage();
+        
         // Wyszukiwarka sekcji
         try {
             $request = $this->getRequest();
@@ -112,8 +113,19 @@ class SectionController extends Zend_Controller_Action
                     $section->setAuthorId($_SESSION['Zend_Auth']['storage'][0]->user_id);
                     $section->setRemoved(0);
                     
+                     
+                    // get all sections count to 
+                    $tSection = new Application_Model_DbTable_Section();
+                    $count = $tSection->getAllSectionsCount();
+                    // Add 1 to number of elements; set it as an order number
+                    $section->setOrder($count + 1);
+                    
                     $mapper = new Application_Model_SectionMapper();
                     $mapper->save($section);
+                   
+                    
+                    
+                    // redirect...
                     $this->_flashMessenger->addMessage('success');
                     $this->_flashMessenger->addMessage('Sekcja dodana!');
                     return $this->_helper->redirector->gotoRoute(array(), 'note_section_index');
