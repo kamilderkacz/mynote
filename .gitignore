@@ -1,5 +1,10 @@
-﻿nbproject
-PLIKI
+﻿PLIKI
 DB
+application/configs/application.ini
 application/tmp/session
-#próbki_kodu.txt
+nbproject
+zf.bat
+zf.php
+zf.sh
+
+
