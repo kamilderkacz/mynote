@@ -1,15 +1,16 @@
 /**
- * Created by Chicken on 2015-09-15.
+ * Created by Kamil Derkacz.
  */
-$(document).ready(function () {
+$(function () {
 
     // Tryb edycji w widoku listy sekcji
-    $('#edit').click(function() {
+    $('#edit').click(function () {
         $('[name="edit-button"]').toggle('fast');
         $('[name="delete-button"]').toggle('fast');
+        // TODO: $('.sections').toggleClass('sortable-sections');
     });
     // Ukrycie CZEGOŚ
-    $('.hide-this-class').click(function() {
+    $('.hide-this-class').click(function () {
         $(this).hide();
     });
     //Potwierdzenie usuwania
@@ -40,19 +41,23 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     // Skrypt: Zmiany widoczności sekcji
     $('[name=icon-changing-visibility]').click(function (event) {
         event.preventDefault();
         var iconName = $(this).attr('class');
         var changeTo;
-        if(iconName === 'fa fa-lock') { changeTo = 'public'; } 
-        if(iconName === 'fa fa-globe') { changeTo = 'private'; } 
+        if (iconName === 'fa fa-lock') {
+            changeTo = 'public';
+        }
+        if (iconName === 'fa fa-globe') {
+            changeTo = 'private';
+        }
         var sectionID = $(this).attr('id');
         //te argsy SĄ DOBRZE
-        
+
         bootbox.dialog({
-            message: 'Zamierzasz zmienić widoczność sekcji. Może to oznaczać, że będzie ona widoczna dla każdego w Internecie. Czy chcesz kontynuować? ', 
+            message: 'Zamierzasz zmienić widoczność sekcji. Może to oznaczać, że będzie ona widoczna dla każdego w Internecie. Czy chcesz kontynuować? ',
             title: "<span=\"bootbox-warning\"><i class=\"glyphicon glyphicon-question-sign\" style=\"color:#5BC0DE\"></i> Informacja</span>",
             buttons:
             {
@@ -60,17 +65,16 @@ $(document).ready(function () {
                 {
                     "label": "Tak",
                     "className": "btn-sm btn-danger",
-                    "callback": function () { 
+                    "callback": function () {
 
                         $.ajax({
-                            type     : "POST",
-                            url      : "/section/changevisibility", // względny URL
-                            data     : {
-                                change_to : changeTo,
-                                section_id : sectionID
+                            type: "POST",
+                            url: "/section/changevisibility", // względny URL
+                            data: {
+                                change_to: changeTo,
+                                section_id: sectionID
                             },
-                            success : function(response) { 
-                                console.log(response);
+                            success: function (response) {
                                 response = JSON.parse(response);
 
 //                                                bootbox.alert(response.msg);
@@ -79,7 +83,7 @@ $(document).ready(function () {
                                     title: "<span=\"bootbox-warning\"><i class=\"glyphicon glyphicon-info-sign\" style=\"color:#5BC0DE\"></i> Informacja</span>",
                                 });
                             },
-                            error: function() {
+                            error: function () {
                                 bootbox.dialog({
                                     message: "Wystąpił nieznany błąd...",
                                     title: "<span=\"bootbox-warning\"><i class=\"glyphicon glyphicon-remove-sign\" style=\"color:#d9534f\"></i> Błąd</span>",
@@ -100,102 +104,128 @@ $(document).ready(function () {
             }
         });
     });
-    
-    // Umożliwienie liście #sortable bycia sortowalnym i skrypt zmiany kolejn.
-    $('#sortable').sortable({
-    axis: 'y',
-    update: function (event, ui) {
-        var data = $(this).sortable('serialize');
-        alert(data);
-        // POST to server using $.post or $.ajax
-//        $.ajax({
-//            data: data,
-//            type: 'POST',
-//            url: '/your/url/here'
-//        });
-    }
+
+    // Umożliwienie liście .sortable-sections bycia sortowalnym i skrypt zmiany kolejn.
+    var currentPage = $('#sortable').attr('data-current-page');
+    $('.sortable-sections').sortable({
+        axis: 'y',
+        update: function (event, ui) {
+            var data = $(this).sortable('serialize');
+//            console.log(data);
+//            
+            // POST to server using $.post or $.ajax
+            $.ajax({
+                data: {
+                    'data': data,
+                    'page': currentPage
+                },
+                type: 'POST',
+                url: '/section/changesectionsorder',
+                success: function (response) {
+                    response = JSON.parse(response);
+                    if(response.success === true)
+                    {
+                        // success
+                    }
+                    else
+                    {
+                        bootbox.dialog({
+                            message: "Podczas zmiany kolejności sekcji wystąpił błąd. Spróbuj ponownie.",
+                            title: "<span=\"bootbox-warning\"><i class=\"glyphicon glyphicon-remove-sign\" style=\"color:#d9534f\"></i> Błąd</span>"
+                        });
+                    }
+                    
+                },
+                error: function () {
+                    bootbox.dialog({
+                        message: "Podczas zmiany kolejności sekcji wystąpił błąd. Spróbuj ponownie.",
+                        title: "<span=\"bootbox-warning\"><i class=\"glyphicon glyphicon-remove-sign\" style=\"color:#d9534f\"></i> Błąd</span>"
+                    });
+                }
+            });
+        }
     });
-    
+
 
 
 
 }); // end of (document).ready
 
 /* 
- * Function to paste a date to title of note input.
+ * Method to paste date to title of note when creating note.
  */
 function pasteToday() {
     var d = new Date();
     var day = d.getDate(); //1-31
     var mon = d.getMonth(); //0-11
     var month = '';
-    switch(mon) {
-    case 0:
-        month = 'stycznia';
-        break;
-    case 1:
-        month = 'lutego';
-        break;
-    case 2:
-        month = 'marca';
-        break;
-    case 3:
-        month = 'kwietnia';
-        break;
-    case 4:
-        month = 'maja';
-        break;
-    case 5:
-        month = 'czerwca';
-        break;
-    case 6:
-        month = 'lipca';
-        break;
-    case 7:
-        month = 'sierpnia';
-        break;
-    case 8:
-        month = 'września';
-        break;
-    case 9:
-        month = 'października';
-        break;
-    case 10:
-        month = 'listopada';
-        break;
-    case 11:
-        month = 'grudnia';
-        break;
-    default:
-        month = 'miesiąca ?';
-    } 
+    switch (mon) {
+        case 0:
+            month = 'stycznia';
+            break;
+        case 1:
+            month = 'lutego';
+            break;
+        case 2:
+            month = 'marca';
+            break;
+        case 3:
+            month = 'kwietnia';
+            break;
+        case 4:
+            month = 'maja';
+            break;
+        case 5:
+            month = 'czerwca';
+            break;
+        case 6:
+            month = 'lipca';
+            break;
+        case 7:
+            month = 'sierpnia';
+            break;
+        case 8:
+            month = 'września';
+            break;
+        case 9:
+            month = 'października';
+            break;
+        case 10:
+            month = 'listopada';
+            break;
+        case 11:
+            month = 'grudnia';
+            break;
+        default:
+            month = 'miesiąca ?';
+    }
     var result = day + ' ' + month;
     $("[name='title']").val(result);
 }
 
 /*
- * Function to set sections per page.
+ * TODO: Method for setting number of sections per page.
  */
-function setItemsPerPage() {
-        
-        var iPP = $('#ipp-select').val();
-        
-        $.ajax({
-            url     :  "/section/setipp",
-            type  : "POST",
-            data    : 
-            {
-                iPP: iPP
-            },
-            success: function(data, textStatus, jqXHR ) { 
-                alert(textStatus);
-
-            },
-            error: function(request, textStatus, errorThrown) {
-                alert(errorThrown);
-            },
-            complete: function(jqXHR, textStatus) {
-//                alert(textStatus);        
-            }
-        });
-      }
+//function setItemsPerPage() {
+//
+//    var iPP = $('#ipp-select').val();
+//
+//    $.ajax({
+//        url: "/section/setipp",
+//        type: "POST",
+//        data:
+//                {
+//                    iPP: iPP
+//                },
+//        success: function (data, textStatus, jqXHR) {
+//            alert(textStatus);
+//
+//        },
+//        error: function (request, textStatus, errorThrown) {
+//            alert(errorThrown);
+//        },
+//        complete: function (jqXHR, textStatus) {
+////                alert(textStatus);        
+//        }
+//    });
+//}

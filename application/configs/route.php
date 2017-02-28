@@ -42,6 +42,12 @@ $route->addRoute(
                     '/sekcje/ustawipp/*',
             array('controller' => 'section','action' => 'setipp'))
         );
+$route->addRoute(
+            'note_section_changesectionsorder',
+            new Zend_Controller_Router_Route(
+                    '/section/changesectionsorder',
+            array('controller' => 'section', 'action' => 'changesectionsorder'))
+        );
 
 //Controller: note
 $route->addRoute(

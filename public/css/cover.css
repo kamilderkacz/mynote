@@ -365,13 +365,20 @@ small {
 /*.grossly-green {
     color: #7BFF00;
 }*/
-
+.withBorder {
+    border: 2px solid #fff;
+}
 
 
 /*
  *  note_section_index
  */
-#sortable {
+
+/* Wszystko dot. SORTABLE */
+.ui-sortable {
+    list-style-type: none;
+}
+.sortable-sections {
     list-style-type: none;
     margin: 0;
     padding: 0;

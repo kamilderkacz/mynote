@@ -80,13 +80,13 @@ if($this->sections) {
     <!-- Paginacja góra -->
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
+            <?php echo ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
         </div>
     </div>
     <!-- /paginacja góra -->
-
+    
     <!-- Lista sekcji -->
-    <ul id="sortable">
+    <ul class="sortable-sections" data-current-page="<?=$this->paginator->getCurrentPageNumber();?>">
     <?php foreach ($this->paginator as $oRow): ?>
         <?= $this->partial('section/section.phtml', array('row' => $oRow)) ?>
     <?php endforeach; ?>
@@ -96,7 +96,7 @@ if($this->sections) {
     <!-- Paginacja dół -->
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <?= ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
+            <?php echo ($this->paginator) ? $this->paginationControl($this->paginator, 'Sliding', 'pagination_section1.phtml', array()) : '' ?>
         </div>
     </div>
     <!-- /paginacja dół -->

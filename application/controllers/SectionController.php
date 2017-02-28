@@ -91,7 +91,6 @@ class SectionController extends Zend_Controller_Action
             $this->_flashMessenger->addMessage('Błąd wyszukiwania. ' . $ex->getMessage());
         }
         
-        //sprawdź czy przesłano 
         $this->view->form = $oForm;
     }
     
@@ -123,8 +122,6 @@ class SectionController extends Zend_Controller_Action
                     $mapper = new Application_Model_SectionMapper();
                     $mapper->save($section);
                    
-                    
-                    
                     // redirect...
                     $this->_flashMessenger->addMessage('success');
                     $this->_flashMessenger->addMessage('Sekcja dodana!');
@@ -237,6 +234,50 @@ class SectionController extends Zend_Controller_Action
         } catch (Exception $er) {
             echo json_encode(array('success' => false, 'msg' => $er->getMessage()));
         }
+    }
+    
+    public function changesectionsorderAction()
+    { 
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        try
+        {
+            // get ajax function parameters
+            $page = $this->getRequest()->getParam('page');
+            $data = $this->getRequest()->getParam('data');
+
+            // Change a strange string from jq-ui sortable to normal array ;)
+            $aData = explode('&section[]=', $data); // wyraz "section" został ustalony w atr. "id" tagu <li>
+            $aData[0] = substr($aData[0], 10);
+
+            // for each section's id's (array values), set order (array index)
+            // order numbers are modified depending of page:
+
+            $i = 1 + (10 * ( $page - 1 ));
+            foreach($aData as $item) {
+                $sectionId = $item;
+                // update section
+                $section = new Application_Model_Section();
+
+                $tSection = new Application_Model_DbTable_Section();
+                $tSection->updateOrder($sectionId, $i);
+
+                $i++;
+            }
+
+            echo json_encode([
+                'success' => TRUE,
+            ]);
+            
+        } catch (Exception $ex) {
+            echo json_encode([
+                'success' => FALSE,
+            ]);
+        }
+        
+
+
     }
 
 }

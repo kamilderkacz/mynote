@@ -32,6 +32,7 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
                 ->addResource('note_section_delete')
                 ->addResource('note_section_changevisibility')
                 ->addResource('note_section_setipp')
+                ->addResource('note_section_changesectionsorder')
                         //note
                 ->addResource('note_note_index')
                 ->addResource('note_note_show')
@@ -64,6 +65,7 @@ class My_Plugin_ACL extends Zend_Controller_Plugin_Abstract {
                     ->allow('member', 'note_section_delete') 
                     ->allow('member', 'note_section_changevisibility') 
                     ->allow('member', 'note_section_setipp') 
+                    ->allow('member', 'note_section_changesectionsorder') 
                     ->allow('member', 'note_note_index')
                     ->allow('member', 'note_note_add')
                     ->allow('member', 'note_note_show')
