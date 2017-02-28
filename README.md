@@ -1,5 +1,5 @@
 # mynote
-Aplikacja do zarządzania notatkami
+Prosta aplikacja do zarządzania notatkami.
 
 ##Instalacja:
 
@@ -13,6 +13,6 @@ Aplikacja do zarządzania notatkami
   - my.domain (np. domena.com.pl)
   - my.absolute_url (http://domena.com.pl)<br />
 
-Cechy: 
+##Cechy: 
 - Aplikacja napisana przy pomocy frameworka Zend Framework 1.12
 - Pełna responsywność (Bootstrap 3.3.5)
