@@ -106,7 +106,7 @@ $(function () {
     });
 
     // Umożliwienie liście .sortable-sections bycia sortowalnym i skrypt zmiany kolejn.
-    var currentPage = $('#sortable').attr('data-current-page');
+    var currentPage = $('.sortable-sections').attr('data-current-page');
     $('.sortable-sections').sortable({
         axis: 'y',
         update: function (event, ui) {

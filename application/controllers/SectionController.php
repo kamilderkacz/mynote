@@ -244,7 +244,8 @@ class SectionController extends Zend_Controller_Action
         try
         {
             // get ajax function parameters
-            $page = $this->getRequest()->getParam('page');
+            // 1 is default page
+            $page = ($p = $this->getRequest()->getParam('page') ) ? $p : 1 ;
             $data = $this->getRequest()->getParam('data');
 
             // Change a strange string from jq-ui sortable to normal array ;)
