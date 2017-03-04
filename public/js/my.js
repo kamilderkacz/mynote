@@ -9,10 +9,27 @@ $(function () {
         $('[name="delete-button"]').toggle('fast');
         // TODO: $('.sections').toggleClass('sortable-sections');
     });
+    
     // Ukrycie CZEGOŚ
     $('.hide-this-class').click(function () {
         $(this).hide();
     });
+    
+    // Odjęcie klasy masthead-nav z głównej nawigacji
+    // najpierw onload
+    if ($(window).width() < 768) {
+        $('#MENU').removeClass('masthead-nav');
+    }
+    // potem onresize
+    $(window).resize(function(){
+	if ($(window).width() < 768) {
+//            alert('Less than 768');
+            $('#MENU').removeClass('masthead-nav');
+        } else {
+            $('#MENU').addClass('masthead-nav');
+        }
+    });
+    
     //Potwierdzenie usuwania
     $('[type=delete-action]').click(function (event) {
         event.preventDefault();

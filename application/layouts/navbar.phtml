@@ -8,12 +8,12 @@
             <?php endif ?>
         </h4>
         <nav>
-            <ul class="nav masthead-nav">
-                <li <?=isset($_SESSION['navbar']['home'])?'class="active"':'';?>><a href="<?= $this->url(array(), 'note_index_index') ?>">Home</a></li>
+            <ul id="MENU" class="nav masthead-nav">
+                <li <?=isset($_SESSION['navbar']['home'])?'class="active"':'';?>><a href="<?= $this->url(array(), 'note_index_index') ?>">Główna</a></li>
                 <?php if(!isset($this->storage)) :  ?>
                     <li <?=isset($_SESSION['navbar']['zarejestruj'])?'class="active"':'';?>><a href="<?= $this->url(array(), 'note_auth_register') ?>">Zarejestruj</a></li>    
                     <li <?=isset($_SESSION['navbar']['zaloguj'])?'class="active"':'';?>><a href="<?= $this->url(array(), 'note_auth_login') ?>">Zaloguj</a></li>
-                <?php else : ?>
+                <?php else: ?>
                     <li><a href="<?= $this->url(array(), 'note_auth_logout') ?>">Wyloguj</a></li>
                 <?php endif; ?>
                 <li <?=isset($_SESSION['navbar']['przegladaj'])?'class="active"':'';?>><a href="<?= $this->url(array(),'note_section_index'); ?>">Przeglądaj</a></li>
