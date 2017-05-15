@@ -7,7 +7,8 @@ $(function () {
     $('#edit').click(function () {
         $('[name="edit-button"]').toggle('fast');
         $('[name="delete-button"]').toggle('fast');
-        // TODO: $('.sections').toggleClass('sortable-sections');
+         $('#lipa').toggleClass('sortable-sections');
+         lipna_funkcja();
     });
     
     // Ukrycie CZEGOŚ
@@ -122,6 +123,8 @@ $(function () {
         });
     });
 
+function lipna_funkcja() 
+{
     // Umożliwienie liście .sortable-sections bycia sortowalnym i skrypt zmiany kolejn.
     var currentPage = $('.sortable-sections').attr('data-current-page');
     $('.sortable-sections').sortable({
@@ -162,7 +165,7 @@ $(function () {
             });
         }
     });
-
+}
 
 
 

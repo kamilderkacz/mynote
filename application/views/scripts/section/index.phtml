@@ -86,7 +86,7 @@ if($this->sections) {
     <!-- /paginacja góra -->
     
     <!-- Lista sekcji -->
-    <ul class="sortable-sections" data-current-page="<?=$this->paginator->getCurrentPageNumber();?>">
+    <ul id="lipa" class="" data-current-page="<?=$this->paginator->getCurrentPageNumber();?>">
     <?php foreach ($this->paginator as $oRow): ?>
         <?= $this->partial('section/section.phtml', array('row' => $oRow)) ?>
     <?php endforeach; ?>
